@@ -92,7 +92,7 @@ liferay-default:
 
                                     return 0
                                 else
-                                    echo "No existing OpenSearch modules found in /opt/liferay/deploy"
+                                    echo "No existing OpenSearch modules found in folder /opt/liferay/deploy."
 
                                     return 1
                                 fi
