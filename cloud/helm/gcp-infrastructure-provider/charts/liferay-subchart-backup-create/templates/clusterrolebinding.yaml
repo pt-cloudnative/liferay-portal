@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+    labels:
+        component: backup-create-platform
+    name: backup-create-cluster-role-binding
+roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: backup-create-cluster-role
+subjects:
+    -   kind: ServiceAccount
+        name: backup-create-service-account
+        namespace: {{ .Release.Namespace }}

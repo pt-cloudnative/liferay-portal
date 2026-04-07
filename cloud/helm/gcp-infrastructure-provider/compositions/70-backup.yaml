@@ -1,5 +1,5 @@
 {{- if $backup.enabled }}
-{{- $backupVaultLabels := merge (dict) $labels (dict "liferay.com/is-backup-vault" "true") }}
+{{- $backupVaultLabels := merge (dict) $labels (dict "is-backup-vault" "true") }}
 apiVersion: storage.gcp.m.upbound.io/v1beta1
 kind: Bucket
 metadata:
