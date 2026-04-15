@@ -34,7 +34,7 @@ jobs:
 
                     if [[ "${{env.IS_PR}}" == "true" ]]
                     then
-                        REGISTRY="ghcr.io/${{github.repository}}"
+                        REGISTRY="ghcr.io/${{github.repository_owner}}/charts"
                     else
                         REGISTRY="${{inputs.registry}}"
                     fi
