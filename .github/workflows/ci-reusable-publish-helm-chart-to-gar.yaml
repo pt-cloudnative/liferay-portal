@@ -6,6 +6,10 @@ jobs:
         env:
             GITHUB_TOKEN: ${{github.token}}
             IS_PR: ${{inputs.pr_number != ''}}
+        permissions:
+            contents: write
+            id-token: write
+            packages: write
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout code
@@ -122,7 +126,7 @@ jobs:
                     git config user.name "${{github.actor}}"
                     git config user.email "${{github.actor}}@users.noreply.github.com"
             -   env:
-                    CR_TOKEN: "${{github.token}}"
+                    CR_TOKEN: "${{secrets.GITHUB_TOKEN}}"
                 if: ${{env.IS_PR == 'true' && inputs.dry_run == false && steps.verify_version.outputs.should_publish == 'true'}}
                 name: Run chart-releaser
                 uses: helm/chart-releaser-action@v1.7.0
