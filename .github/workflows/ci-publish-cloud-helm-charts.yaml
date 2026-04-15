@@ -21,7 +21,7 @@ jobs:
                 with:
                     delete-only-pre-release-versions: false
                     min-versions-to-keep: 0
-                    package-name: 'charts/${{matrix.chart}}'
+                    package-name: '${{github.event.repository.name}}/${{matrix.chart}}'
                     package-type: 'container'
                     version-selection-strategy: 'version-tag-prefix'
                     version-tag-prefix: '-${{github.event.pull_request.number}}'
