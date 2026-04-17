@@ -126,7 +126,7 @@ jobs:
                     git config user.name "${{github.actor}}"
                     git config user.email "${{github.actor}}@users.noreply.github.com"
             -   env:
-                    CR_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+                    CR_TOKEN: ${{secrets.GITHUB_TOKEN}}
                 if: ${{env.IS_PR == 'true' && inputs.dry_run == false && steps.verify_version.outputs.should_publish == 'true'}}
                 name: Run chart-releaser
                 uses: helm/chart-releaser-action@v1.7.0

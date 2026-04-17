@@ -5,26 +5,26 @@ jobs:
     cleanup-pr:
         if: github.event.action == 'closed' && github.event_name == 'pull_request' && github.repository == 'pt-cloudnative/liferay-portal'
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                chart:
-                    - liferay-aws
-                    - liferay-aws-infrastructure
-                    - liferay-aws-infrastructure-provider
-                    - liferay-default
-                    - liferay-gcp
-                    - liferay-gcp-infrastructure
-                    - liferay-gcp-infrastructure-provider
         steps:
             -   name: Delete PR versions from GHCR
                 uses: actions/delete-package-versions@v5
                 with:
                     delete-only-pre-release-versions: false
                     min-versions-to-keep: 0
-                    package-name: 'charts/${{matrix.chart}}'
-                    package-type: 'container'
-                    version-selection-strategy: 'version-tag-prefix'
-                    version-tag-prefix: '-${{github.event.pull_request.number}}'
+                    package-name: charts/${{matrix.chart}}
+                    package-type: container
+                    version-selection-strategy: version-tag-prefix
+                    version-tag-prefix: -${{github.event.pull_request.number}}
+        strategy:
+            matrix:
+                chart:
+                    -   liferay-aws
+                    -   liferay-aws-infrastructure
+                    -   liferay-aws-infrastructure-provider
+                    -   liferay-default
+                    -   liferay-gcp
+                    -   liferay-gcp-infrastructure
+                    -   liferay-gcp-infrastructure-provider
     publish-aws:
         if: |
             (github.event_name == 'push' && github.repository == 'liferay/liferay-portal') ||
