@@ -194,7 +194,10 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
               with:
-                fetch-depth: 0
+                fetch-depth: 1
+                sparse-checkout: |
+                    cloud/helm
+                spare-checkout-code-mode: true
             - name: Configure Git
               run: |
                 git config user.name "$GITHUB_ACTOR"
