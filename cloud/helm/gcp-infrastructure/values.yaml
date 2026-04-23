@@ -23,6 +23,7 @@ endpoints: {}
 environmentId: ""
 forceDestroy: false
 gateway:
+    annotations: {}
     className: ""
     clientTrafficPolicySpec: {}
     name: ""
