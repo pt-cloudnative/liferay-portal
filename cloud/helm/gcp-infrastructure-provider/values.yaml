@@ -10,6 +10,7 @@ clusterBootstrap:
             memory: 8Mi
     script: |
         sysctl -w vm.max_map_count=1048576
+crossplaneGsaName: ""
 crossplaneNamespace: crossplane-system
 deploymentName: ""
 eck-operator:
@@ -22,6 +23,7 @@ global:
     gcp:
         projectId: ""
         projectNumber: ""
+        vpcName: ""
 liferay-subchart-backup-controller:
     enabled: true
     serviceAccountName: backup-controller

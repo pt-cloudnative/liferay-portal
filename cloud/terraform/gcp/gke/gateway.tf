@@ -27,24 +27,6 @@ resource "helm_release" "envoy_gateway" {
 	]
 	version="v1.6.3"
 }
-resource "kubernetes_pod_disruption_budget_v1" "envoy_proxy_pdb" {
-	depends_on=[
-		helm_release.envoy_gateway,
-	]
-	metadata {
-		name="envoy-proxy-pdb"
-		namespace=var.gateway_namespace
-	}
-	spec {
-		max_unavailable="1"
-		selector {
-			match_labels={
-				"app.kubernetes.io/component"="proxy"
-				"app.kubernetes.io/name"="envoy"
-			}
-		}
-	}
-}
 resource "null_resource" "wait_for_connect_gateway" {
 	depends_on=[
 		google_container_cluster.primary,

@@ -35,9 +35,10 @@ spec:
                                 type: Utilization
                         type: Resource
                 minReplicas: 3
+            envoyPDB:
+                maxUnavailable: 1
             envoyService:
                 annotations:
-                    cloud.google.com/neg: "{\"ingress\": true}"
                     {{- if not .Values.gateway.internetFacing }}
                     networking.gke.io/internal-load-balancer-allow-global-access: "true"
                     networking.gke.io/load-balancer-type: Internal
