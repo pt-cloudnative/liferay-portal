@@ -274,8 +274,9 @@ jobs:
             -   name: Checkout code
                 uses: actions/checkout@v4
                 with:
-                    filter: blob:none
+                    fetch-depth: 1
                     show-progress: false
+                    sparse-checkout: cloud/helm
             -   env:
                     GITHUB_TOKEN: ${{github.token}}
                 id: verify_version
