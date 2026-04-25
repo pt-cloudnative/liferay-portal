@@ -169,9 +169,8 @@ jobs:
 
                     PATTERN="0\\.0\\.0-pr-${PR_NUMBER}-"
 
-                    local tags
-
-                    tags=$(gh release list --limit 1000 --json tagName \ --jq ".[] | select(.tagName | test(\"${PATTERN}\")) | .tagName")
+                    tags=$(gh release list --limit 1000 --json tagName \
+                        --jq ".[] | select(.tagName | test(\"${PATTERN}\")) | .tagName")
 
                     echo "${tags}" | while read -r tag
                     do
