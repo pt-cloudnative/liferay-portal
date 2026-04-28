@@ -237,9 +237,6 @@ spec:
             kind: Gateway
             name: {{ $ctx.statefulset.network.gatewayName }}
             sectionName: {{ printf "%s-%s" $ctx.statefulset.network.endpointRef $slug }}
-        {{- with $ctx.statefulset.network.extraParentRefs }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
     rules:
         -   backendRefs:
                 -   name: {{ include "liferay.name" $ctx.root }}{{ $suffix }}
@@ -253,9 +250,6 @@ spec:
                 backendRequest: {{ .backendRequest }}
                 request: {{ .request }}
             {{- end }}
-        {{- with $ctx.statefulset.network.extraRules }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
 {{- end }}
 {{- else }}
 ---
